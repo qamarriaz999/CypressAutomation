@@ -100,11 +100,19 @@ describe('Digital Tolk Test Suite', function(){
     it('TS_07', function(){
 
         cy.xpath('//body[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/div[1]/div[1]/div[1]/button[1]/span[1]').click()
+        
         cy.wait(3000)
         cy.xpath('//span[contains(text(),"Login")]').click()
         cy.wait(5000)
+
+        //Rebooking code
+
+        //const message= "Du har en liknande bokning samma tid. Språk: Arabiska, 2021-09-03, kl 03:00:00, bokningsnummer 1875469. Vill ni lägga en till bokning?"
+        //cy.xpath('//body[1]/div[16]/div[1]/div[3]/button[2]/span[1]').click()
+        cy.xpath('//span[contains(text(), "Ja")]').last().click()
         //cy.xpath('//span[contains(text(),"Confirmation"]').should('have.text', "Confirmation")
         //cy.xpath('//label[contains(text(),"Booker Name:")]')
+        cy.wait(5000)
         cy.xpath('//label[contains(text(),"Booker Name:")]').should('have.text',"Booker Name:") 
 
         cy.xpath('//input[@placeholder="Input Booker Name"]').click({force: true})
@@ -122,6 +130,7 @@ describe('Digital Tolk Test Suite', function(){
         cy.wait(3000)
         cy.xpath('//span[contains(text(),"Fax")]').click()
 
+        cy.xpath('//input[@placeholder="Ange i formatet 468738293 utan mellanslag, +, eller 00"]').clear()
         cy.xpath('//input[@placeholder="Ange i formatet 468738293 utan mellanslag, +, eller 00"]').type("1234567890")
 
         cy.xpath('//a[contains(text(),"Change")]').click()
